@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemy/GroundEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/enemyWalking_1.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 18.1082, 23.4843 )
+
+[node name="GroundEnemy" type="KinematicBody2D"]
+position = Vector2( 420.779, 551.725 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 16, -19.1, 16, 15, 15.3, 15, 10, 15.8, 10, 21.8, -11, 22, -11, 16, -16, 16, -16, -17.6, -11, -21.9, 11.2, -22 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

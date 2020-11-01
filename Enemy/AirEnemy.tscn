@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemy/AirEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/enemyFloating_1.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 23.2904, 22.1665 )
+
+[node name="AirEnemy" type="KinematicBody2D"]
+position = Vector2( 860.472, 408.641 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+turnDistance = 27000
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 21, -9.4, 19.8, -7, 21, -5.8, 21, 6, 20, 7.4, 21, 11.5, 21, 20, 10.4, 20, 8, 18.8, 6.8, 20, -7, 20, -8.4, 18.9, -12.7, 20, -21, 20, -21, 10.4, -19.8, 8, -21, 6.8, -21, -5, -19.9, -6.4, -21, -8.6, -21, -20, -13.6, -20, -8.4, -18.5, -7.4, -20, 6, -20, 7.4, -18.9, 12.2, -20, 21, -20 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 7 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
